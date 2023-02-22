@@ -3,6 +3,8 @@ package com.academy.techcenture.stepDefinitions;
 import com.academy.techcenture.driver.Driver;
 import com.academy.techcenture.pages.BasePage;
 import com.academy.techcenture.pages.HomePage;
+import com.academy.techcenture.pages.LogInPage;
+import com.academy.techcenture.pages.UserInfopage;
 import io.cucumber.java.en.*;
 
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,8 @@ public class RegisterUser {
     private WebDriver driver;
     private WebDriverWait wait;
     private HomePage homePage;
+    private LogInPage logInPage;
+    private UserInfopage userInfopage;
 
     @Given("browser is open")
     public void browser_is_open() {
@@ -25,7 +29,7 @@ public class RegisterUser {
         BasePage basePage = new BasePage(driver);
         basePage.navigateToHomePage("");
         wait=new WebDriverWait(driver, (long)(15));
-        wait.until(ExpectedConditions.visibilityOfAllElements());
+      //  wait.until(ExpectedConditions.visibilityOfAllElements());
 
     }
     @Then("user clicks on sing up button log in button")
@@ -36,19 +40,23 @@ public class RegisterUser {
     }
     @Then("user is been navigated to login page")
     public void user_is_been_navigated_to_login_page() {
-
+        logInPage=new LogInPage(driver);
+        logInPage.verifyNewUserSignupIsVisible();
     }
     @Then("user enters name and email")
     public void user_enters_name_and_email() {
-
+        logInPage=new LogInPage(driver);
+        logInPage.enterNameAndEmail();
     }
     @Then("user clicks sing up")
     public void user_clicks_sing_up() {
-
+        logInPage=new LogInPage(driver);
+        logInPage.clickOnSubmitSignUpBtn();
     }
     @Then("user navigates to create an account page")
     public void user_navigates_to_create_an_account_page() {
-
+        userInfopage = new UserInfopage(driver);
+        userInfopage.verifyEnterAccountInfoTextIsVisible();
     }
     @Then("user enters <Title>, <Name>, <Email>, <Password>, <Date of birth>")
     public void user_enters_title_name_email_password_date_of_birth() {

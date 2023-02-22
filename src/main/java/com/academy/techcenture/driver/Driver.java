@@ -10,7 +10,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Driver {
+public class Driver{
     public static WebDriver driver;
 
     private Driver() {}
@@ -18,11 +18,11 @@ public class Driver {
     public static WebDriver getDriver() {
         if(driver == null) {
             String browser = ConfigReader.getProperty("browser");
-            boolean headless = Boolean.parseBoolean(ConfigReader.getProperty("headless"));
+           boolean headless = Boolean.parseBoolean(ConfigReader.getProperty("headless"));
             int pageLoadTime = Integer.parseInt(ConfigReader.getProperty("pageLoadTime"));
-            int implicitWait = Integer.parseInt(ConfigReader.getProperty("implicitWait"));
+           int implicitWait = Integer.parseInt(ConfigReader.getProperty("implicitWait"));
 
-            if (browser.trim().equalsIgnoreCase("chrome")) {
+            if (browser.equalsIgnoreCase("chrome")) {
                 ChromeOptions options = new ChromeOptions();
                 options.setHeadless(headless);
                 WebDriverManager.chromedriver().setup();

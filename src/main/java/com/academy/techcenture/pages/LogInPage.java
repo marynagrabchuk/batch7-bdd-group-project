@@ -23,6 +23,12 @@ public class LogInPage extends BasePage{
     private WebElement emailInput;
     @FindBy(xpath = "//h2[text()='New User Signup!']//following-sibling::form/button[@type='submit']")
     private WebElement submitBtnForSignUp;
+    @FindBy(xpath = "//input[@name='email' and @data-qa='login-email']")
+    private WebElement signInEmail;
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement passwordInput;
+    @FindBy(xpath = "//button[text()='Login']")
+    private WebElement logInBtn;
     public void verifyNewUserSignupIsVisible(){
         Assert.assertTrue("The message new user sing up is not displayed",newUserSignup.isDisplayed());
 
@@ -48,5 +54,13 @@ public class LogInPage extends BasePage{
         }
         email+="@gmail.com";
         return email;
+    }
+
+    public void enterEmainOnlogInLine(){
+        signInEmail.sendKeys(ConfigReader.getProperty("email1"));
+        passwordInput.sendKeys(ConfigReader.getProperty("userPassword"));
+    }
+    public void clickLogInBtn(){
+        logInBtn.click();
     }
 }

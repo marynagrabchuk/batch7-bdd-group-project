@@ -7,7 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Driver{
@@ -23,9 +26,30 @@ public class Driver{
            int implicitWait = Integer.parseInt(ConfigReader.getProperty("implicitWait"));
 
             if (browser.equalsIgnoreCase("chrome")) {
-                ChromeOptions options = new ChromeOptions();
-                options.setHeadless(headless);
+               // ChromeOptions options = new ChromeOptions();
+//                options.setHeadless(headless);
                 WebDriverManager.chromedriver().setup();
+
+                DesiredCapabilities cap;
+                ChromeOptions options = new ChromeOptions();
+                String downloadFilepath = "K:\\";
+                HashMap<String, Object> setPath = new HashMap<String, Object>();
+                setPath.put("download.default_directory", downloadFilepath); //to set path
+                setPath.put("safebrowsing.enabled", "false"); // to disable security check eg. Keep or cancel button
+
+                HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
+                options.setExperimentalOption("prefs", setPath);
+                options.addArguments("--disable-extensions"); //to disable browser extension popup
+
+
+                cap = DesiredCapabilities.chrome();
+                cap.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
+                cap.setCapability(ChromeOptions.CAPABILITY, options);
+                Map<String, Object> prefs = new HashMap<String, Object>();
+                prefs.put("autofill.profile_enabled", false);
+                prefs.put("profile.password_manager_enabled", false);
+                prefs.put("profile.default_content_setting_values.notifications", 2);
+                options.setExperimentalOption("prefs", prefs);
                 driver = new ChromeDriver(options);
             } else if (browser.trim().equalsIgnoreCase("edge")) {
                 EdgeOptions options = new EdgeOptions();

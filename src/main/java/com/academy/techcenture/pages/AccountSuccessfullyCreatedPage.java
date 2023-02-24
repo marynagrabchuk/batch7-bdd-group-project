@@ -30,34 +30,9 @@ public class AccountSuccessfullyCreatedPage extends BasePage {
     }
 
     public void closePopUp(){
-        // Set the implicit wait time for the driver
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        String mainWindowHandle = driver.getWindowHandle();
 
-// Define a new WebDriverWait instance with a timeout of 10 seconds
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-
-// Wait for the pop-up window to appear
-        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
-// Switch to the pop-up window
-        for (String windowHandle : driver.getWindowHandles()) {
-            if (!windowHandle.equals(mainWindowHandle)) {
-                driver.switchTo().window(windowHandle);
-                break;
-            }
-        }
-        Alert alert = driver.switchTo().alert();
-        alert.dismiss();
-
-
-
-// Perform actions on the pop-up window
-// ...
-
-// Switch back to the main window
-        driver.switchTo().window(mainWindowHandle);
     }
+
 
 
 }

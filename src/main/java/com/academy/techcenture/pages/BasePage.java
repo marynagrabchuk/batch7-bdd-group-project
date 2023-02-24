@@ -4,7 +4,7 @@ import com.academy.techcenture.config.ConfigReader;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage {
-    protected static WebDriver driver;
+    protected WebDriver driver;
 
 
     public BasePage(WebDriver driver) {

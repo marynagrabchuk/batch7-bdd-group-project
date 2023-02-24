@@ -15,6 +15,8 @@ public class LogInPage extends BasePage{
     }
     @FindBy(xpath = "//h2[text()='New User Signup!']")
     private WebElement newUserSignup;
+    @FindBy(xpath = "//h2[text()='Login to your account']")
+    private WebElement logInToAccountText;
     @FindBy(xpath = "//button[text()='Signup']")
     private WebElement singUpBtn;
     @FindBy(xpath = "//input[@placeholder='Name']")
@@ -37,6 +39,9 @@ public class LogInPage extends BasePage{
         nameInput.sendKeys(ConfigReader.getProperty("name"));
         emailInput.sendKeys(getRandomEmail());
 
+    }
+    public void verifyLogInToAccountIsVisible(){
+        Assert.assertTrue("Log In to account is not visible",logInToAccountText.isDisplayed());
     }
 
     public void clickSignInBtn(){

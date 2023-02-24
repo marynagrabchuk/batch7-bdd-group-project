@@ -1,8 +1,11 @@
 Feature: Test Register User Functionality
-Background: Login functionality
-  Given  browser is open
-  And the user is on a home page
+  Background: Login functionality
+    Given  browser is open
+    And the user is on a home page
+
+
 Scenario: Check user register functionality works properly
+  When user on home page, home page is visible
   When user clicks on sing up button log in button
   Then user is been navigated to login page
   Then user enters name and email
@@ -20,5 +23,8 @@ Scenario: Check user register functionality works properly
   Then user navigated to account created successfully page
   Then user clicks continue button
   Then user navigated to the home page
+
+
+
 
 

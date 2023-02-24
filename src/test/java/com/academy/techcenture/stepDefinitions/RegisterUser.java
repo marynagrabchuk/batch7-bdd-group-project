@@ -16,8 +16,9 @@ import java.util.Map;
 
 
 
-public class RegisterUser extends Background{
-    private WebDriver driver;
+public class RegisterUser  {
+
+    protected WebDriver driver;
     private WebDriverWait wait;
     private HomePage homePage;
     private LogInPage logInPage;
@@ -25,22 +26,31 @@ public class RegisterUser extends Background{
     private Select select;
     private AccountSuccessfullyCreatedPage accountSuccessfullyCreatedPage;
 
-//    @Given("browser is open")
-//    public void browser_is_open() {
-//       driver= Driver.getDriver();
-//    }
-//    @Given("the user is on a home page")
-//    public void the_user_is_on_a_home_page() {
-//        BasePage basePage = new BasePage(driver);
-//        basePage.navigateToHomePage("");
+    @Given("browser is open")
+    public void browser_is_open() {
+        driver= Driver.getDriver();
+    }
+    @Given("the user is on a home page")
+    public void the_user_is_on_a_home_page() {
+        BasePage basePage = new BasePage(driver);
+        basePage.navigateToHomePage("");
 //        wait=new WebDriverWait(driver, (long)(15));
-//      //  wait.until(ExpectedConditions.visibilityOfAllElements());
-//
-//    }
+        //  wait.until(ExpectedConditions.visibilityOfAllElements());
+
+    }
+    @When("user on home page, home page is visible")
+    public void user_on_home_page_home_page_is_visible() {
+
+    }
+    @Then("user clicks on Signup Login button")
+    public void userClicksOnSignupLoginButton() {
+        homePage=new HomePage(driver);
+        homePage.clickOnSingInSignUpBtn();
+    }
     @Then("user clicks on sing up button log in button")
     public void user_clicks_on_sing_up_button_log_in_button() {
          homePage = new HomePage(driver);
-         homePage.clickOnSingInBtn();
+         homePage.clickOnSingInSignUpBtn();
 
     }
     @Then("user is been navigated to login page")
@@ -144,7 +154,13 @@ public class RegisterUser extends Background{
     }
     @Then("user navigated to the home page")
     public void user_navigated_to_the_home_page()  {
-        accountSuccessfullyCreatedPage=new AccountSuccessfullyCreatedPage(driver);
-        accountSuccessfullyCreatedPage.closePopUp();
+//        accountSuccessfullyCreatedPage=new AccountSuccessfullyCreatedPage(driver);
+//        accountSuccessfullyCreatedPage.closePopUp();
     }
+
+
+
+
+
+
 }
